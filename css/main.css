@@ -1,0 +1,28 @@
+body{
+    background-color:#849efb;
+}
+
+.has-random-blurred-bg-img{
+    background: url('https://picsum.photos/1349/378/?random&blur'),url("../img/bg_aboutus.jpg")center center;
+    background-size: cover;
+}
+
+.is-opaque{
+    background-color: #bfb4b4b0;
+    padding: 10px;
+}
+
+.is-shutter-primary{
+    background-color: #fbd784;
+    color: rgba(0,0,0,.7);
+}
+
+.is-shutter-secondary{
+    background-color: #ef84fb;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.is-shutter-secondary:hover{
+    border-color: #b5b5b5;
+    color: #5d5d5d;
+}
