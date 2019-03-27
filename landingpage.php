@@ -1,3 +1,8 @@
+<?php session_start();
+    include "php/helpers.php";
+    $id = getId();
+    checkID($id,"nologin");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -66,7 +71,7 @@
     </section>
     <!--Sección imágenes-->
     <?php
-    include "php/helpers.php";
+
 
     $conector = conectarServer();
 

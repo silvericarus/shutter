@@ -26,3 +26,8 @@ body{
     border-color: #b5b5b5;
     color: #5d5d5d;
 }
+.is-shutter-small-center{
+    max-width: 50%!important;
+    margin: auto;
+    margin-bottom: 80px;
+}

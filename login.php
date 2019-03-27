@@ -32,12 +32,14 @@
             while(!is_null($row)){
                 $role = $row["rol"];
                 $id = $row["id"];
-                if ($rememberMe){
-                    setcookie("sessionid",$id,31557600,"/");
-                    $_SESSION["sessionid"] = $id;
-                }else{
-                    $_SESSION["sessionid"] = $id;
+
+                $_SESSION["sessionid"] = $id;
+                if (!empty($rememberMe)) {
+                    $datossession = session_encode();
+
+                    setcookie("sessionid", $datossession, time() + 31557600, "/");
                 }
+
                 if ($role=="users"){
                     header("Location:./php/users/dashboard.php");
                 }else{
