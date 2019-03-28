@@ -47,8 +47,11 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-shutter-secondary" href="login.php">
+                        <a class="button is-shutter-secondary" href="register.php">
                             Únete
+                        </a>
+                        <a class="button is-shutter-secondary" href="login.php">
+                            Inicia sesión
                         </a>
                     </div>
                 </div>
