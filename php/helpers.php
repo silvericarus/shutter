@@ -143,4 +143,26 @@
         }
         return $user;
     }
+
+    /**
+     * [comprobarNickValido Comprueba si un nick existe ya en la base de datos para que no se repita]
+     * @param  [string] $nick [El nick a comprobar]
+     * @return [boolean]       [true si es válido y false si no lo es]
+     */
+    function checkUser($user){
+        $conector = conectarServer();
+        $consulta = "SELECT nombre_usuario from usuario;";
+        $datos = mysqli_query($conector,$consulta);
+        $resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+        while(!is_null($resultado)){
+            if($resultado["nombre_usuario"]==$user){
+                mysqli_close($conector);
+                return false;
+            }else{
+                $resultado = mysqli_fetch_array($datos,MYSQLI_ASSOC);
+            }
+        }
+        mysqli_close($conector);
+        return true;
+    }
 ?>
