@@ -25,6 +25,29 @@
 </head>
 <body>
     <?php menu("/","users");?>
+    <?php
+        if (isset($_POST["Enviar"])){
+            $content = $_POST['content'];
+            $imagen = $_FILES['imagen']["name"];
+            $today = date("Y-m-d");
+            $dir_subida = "../../img/$userData[nombre_usuario]/publicacion";
+
+            if (!isset($_FILES)){
+                $imagen = null;
+            }
+
+            if(!file_exists($dir_subida)){
+                mkdir($dir_subida,0777,true);
+            }
+
+            $consulta = "INSERT INTO publicacion VALUES (null,'$content','$today','$imagen',$id)";
+
+            mysqli_query($con,$consulta);
+
+            move_uploaded_file($_FILES["imagen"]["tmp_name"],"../../img/".$userData["nombre_usuario"]."/publicacion/".$imagen);
+
+        }
+    ?>
     <section class="hero has-random-blurred-bg-img">
         <div class="hero-body">
             <div class="container">
@@ -38,7 +61,7 @@
                         </h1>
                     </div>
                     <div class="column is-opaque">
-                        <form action="#" name="submitUpdates">
+                        <form action="#" name="submitUpdates" method="post" enctype="multipart/form-data">
                             <div class="field">
                                 <div class="control">
                                     <textarea class="textarea has-fixed-size" placeholder="Escribe tus pensamientos aquí" rows="3" name="content"></textarea>
@@ -59,7 +82,7 @@
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <button class="button is-shutter-secondary" type="submit" name="Enviar">Enviar</button>
+                                    <button class="button is-shutter-secondary" type="submit" name="Enviar" id="enviarPublicacion">Enviar</button>
                                 </div>
                             </div>
                         </form>
@@ -76,7 +99,7 @@
                     <span class="tag is-medium">Hoy</span>
                 </header>
                 <?php
-                    $consulta = "SELECT
+                    $consulta = "SELECT DISTINCT 
                                       coment.count,
                                       u.img,
                                       u.nombre_usuario,
@@ -132,15 +155,21 @@
                             $row[contenido]";
                             if ($row["imagen"] != null){
                                 echo "<figure class=\"image is-5by3\">
-                                          <img src=\"../../img/$row[imagen]\">
+                                          <img src=\"../../img/$row[nombre_usuario]/publicacion/$row[imagen]\">
                                         </figure>";
                             }
-                            echo "<br><kbd>$row[fecha]</kbd><br>";
+                            echo "<p class='buttons'>";
                             if ($row["count"] != 0){
                                 echo "<a class=\"button is-link is-small is-rounded\">$row[count] comentarios</a>";
                             }else{
                                 echo "<a class=\"button is-link is-small is-rounded\">¡Comenta!</a>";
                             }
+                            echo " <a class=\"button is-danger is-small is-rounded\">
+                                        <span class=\"icon is-small\">
+                                          <i class=\"fas fa-exclamation-triangle\"></i>
+                                        </span>
+                                        <span>Reportar</span>
+                                      </a></p>";
                             echo "
                         </div>
                         </div>
