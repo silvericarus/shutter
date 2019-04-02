@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <div class=\"media-content\">
-                                <p class=\"title is-4\">$row[nombre_usuario]</p>
+                                <a class=\"title is-4\" href='./profile.php?u=$row[nombre_usuario]'>$row[nombre_usuario]</a>
                             </div>
 
                         <div class=\"content\">

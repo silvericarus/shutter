@@ -73,7 +73,7 @@
   <div id=\"navbarBasicExample\" class=\"navbar-menu\">
     <div class=\"navbar-start\">
 
-      <a class=\"navbar-item\">
+      <a class=\"navbar-item\" href='./profile.php'>
         Perfil
       </a>
 
@@ -90,8 +90,8 @@
             }else{
                 echo "<nav class=\"navbar\" role=\"navigation\" aria-label=\"main navigation\">
   <div class=\"navbar-brand\">
-    <a class=\"navbar-item\" href=\"./users/dashboard.php\">
-      <img src=\"../img/nombre.png\" width=\"112\" height=\"26\">
+    <a class=\"navbar-item\" href=\"./dashboard.php\">
+      <img src=\"../../img/nombre.png\" width=\"112\" height=\"26\">
     </a>
 
     <a role=\"button\" class=\"navbar-burger burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"navbarBasicExample\">
@@ -104,12 +104,16 @@
   <div id=\"navbarBasicExample\" class=\"navbar-menu\">
     <div class=\"navbar-start\">
 
-      <a class=\"navbar-item\">
+      <a class=\"navbar-item\" href='./profile.php'>
         Perfil
       </a>
 
       <a class=\"navbar-item\">
          Explorar
+      </a>
+      
+      <a class=\"navbar-item\" href='../cerrarSesion.php'>
+         Cerrar Sesión
       </a>
     </div>
   </div>
