@@ -136,6 +136,7 @@
         $data = mysqli_query($con,$consulta);
         $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
         while (!is_null($row)){
+            $user["id"] = $row["id"];
             $user["nombre_usuario"] = $row["nombre_usuario"];
             $user["img"] = $row["img"];
             $user["nivel"] = $row["nivel"];
