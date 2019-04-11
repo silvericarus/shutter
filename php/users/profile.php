@@ -150,7 +150,6 @@ while (!is_null($row)) {
 
                         }
                         echo"</figure>
-                                </figure>
                                 </div>
                             </div>
                             <div class=\"media-content\">
@@ -160,7 +159,7 @@ while (!is_null($row)) {
                         <div class=\"content\">
                             $row[contenido]";
                             if ($row["imagen"] != null){
-                                echo "<figure class=\"image is - 5by3\">
+                                echo "<figure class=\"image is-5by3\">
                                           <img src=\" ../../img/$user[nombre_usuario]/publicacion/$row[imagen]\">
                                         </figure>";
                             }

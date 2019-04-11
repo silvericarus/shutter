@@ -101,6 +101,7 @@
                 <?php
                     $consulta = "SELECT DISTINCT 
                                       coment.count,
+                                      p.id as idPub,
                                       u.img,
                                       u.nombre_usuario,
                                       p.contenido,
@@ -160,9 +161,9 @@
                             }
                             echo "<p class='buttons'>";
                             if ($row["count"] != 0){
-                                echo "<a class=\"button is-link is-small is-rounded\">$row[count] comentarios</a>";
+                                echo "<a class=\"button is-link is-small is-rounded\" href='./publicacion.php?p=$row[idPub]'>$row[count] comentarios</a>";
                             }else{
-                                echo "<a class=\"button is-link is-small is-rounded\">¡Comenta!</a>";
+                                echo "<a class=\"button is-link is-small is-rounded\" href='./publicacion.php?p=$row[idPub]'>¡Comenta!</a>";
                             }
                             echo " <a class=\"button is-danger is-small is-rounded\">
                                         <span class=\"icon is-small\">
