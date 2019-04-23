@@ -206,7 +206,7 @@
                         </div>
                       </div>";
                 echo "<footer class=\"card-footer\">
-                        <a href=\"#\" class=\"card-footer-item\">Ver más</a>
+                        <a href=\"./evento.php?e=$row[id]\" class=\"card-footer-item\">Ver más</a>
                       </footer>
                      </div>";
                 $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
