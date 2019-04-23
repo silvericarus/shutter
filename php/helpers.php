@@ -170,4 +170,26 @@
         mysqli_close($conector);
         return true;
     }
+
+    function renderEventRules($rulesArray){
+        echo "<ul>";
+        foreach ($rulesArray as $rule){
+            echo "<li>$rule</li>";
+        }
+        echo "</ul>";
+    }
+
+    function checkVoteUser($userId,$eventId){
+        $votes = null;
+        $conector = conectarServer();
+        $consulta = "SELECT COUNT(*) as votes from vota v,trabajo t,evento e where v.id_trabajo = t.id 
+        AND t.id_evento = e.id AND v.id_usuario=$userId AND e.id = $eventId;";
+        $data = mysqli_query($conector,$consulta);
+        $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
+        while (!is_null($row)){
+            $votes = $row["votes"];
+            $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
+        }
+        return $votes;
+    }
 ?>
