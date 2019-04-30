@@ -40,6 +40,15 @@ if (isset($_POST["id"])){
     <script src="../../js/bulma-extensions.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="../../js/file.js"></script>
+    <script>
+        function reportEv(id) {
+            if (confirm("Realmente deseas reportar este evento? Se informará a los Administradores de ello.")){
+                window.open("../report.php?e=" + id, "_self");
+            } else{
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
     <?php menu("/","users");?>
@@ -73,6 +82,14 @@ if (isset($_POST["id"])){
                                                 echo "<span class=\"tag is-dark is-large\">Evento Terminado</span>";
                                                 break;
                                         endswitch;?>
+                                        <p class="buttons">
+                                            <button class="button is-danger is-small is-rounded" onclick="reportEv( <?php echo $eventId?>)">
+                                            <span class="icon is-small">
+                                          <i class="fas fa-exclamation-triangle"></i>
+                                        </span>
+                                                <span>Reportar</span>
+                                            </button>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +111,7 @@ if (isset($_POST["id"])){
                 <?php if ($row["trabajos"]!=$eventParticipants):?>
                     <form action="#" method="post" name="subirPubli" enctype="multipart/form-data">
                         <div class="field">
-                            <div class="file is-large is-boxed has-name">
+                            <div class="file is-large is-boxed has-name is-fullwidth">
                                 <label class="file-label">
                                     <input class="file-input" type="file" name="publi">
                                     <span class="file-cta">
@@ -113,14 +130,14 @@ if (isset($_POST["id"])){
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button class="button is-shutter-secondary" type="submit" name="Enviar" id="enviarPublicacion">Enviar</button>
+                                <button class="button is-shutter-secondary is-fullwidth" type="submit" name="Enviar" id="enviarPublicacion">Enviar</button>
                             </div>
                         </div>
                     </form>
                 <?php else:?>
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div class="field">
-                            <div class="file is-large is-boxed has-name">
+                            <div class="file is-large is-boxed has-name is-fullwidth">
                                 <label class="file-label">
                                     <input class="file-input" type="file" disabled>
                                     <span class="file-cta">
@@ -139,7 +156,7 @@ if (isset($_POST["id"])){
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button class="button is-shutter-secondary" type="submit" id="enviarPublicacion" disabled>Enviar</button>
+                                <button class="button is-shutter-secondary is-fullwidth" type="submit" id="enviarPublicacion" disabled>Enviar</button>
                             </div>
                         </div>
                     </form>

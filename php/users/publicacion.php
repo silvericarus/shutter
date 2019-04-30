@@ -31,6 +31,15 @@ $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
 
     <script src="../../js/bulma-extensions.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+        function reportCom(id) {
+            if (confirm("Realmente deseas reportar este comentario? Se informará a los Administradores de ello.")){
+                window.open("../report.php?c=" + id, "_self");
+            } else{
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
     <?php menu("/","users");?>
@@ -92,7 +101,7 @@ $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
         <div class="column">
             <h3 class="title is-3">Comentarios de esta publicación</h3>
             <?php
-                $consulta = "SELECT c.contenido, c.fecha, c.id_usuario, u.img, u.nombre_usuario 
+                $consulta = "SELECT c.id as idCom,c.contenido, c.fecha, c.id_usuario, u.img, u.nombre_usuario 
 FROM comentario c,publicacion p,usuario u 
 WHERE c.id_publicacion= p.id 
 AND c.id_usuario = u.id 
@@ -137,6 +146,14 @@ AND p.id = $pubId Order BY c.fecha ASC;";
                                     <?php
                                     echo $row['contenido'];
                                     ?>
+                                    <p class="buttons">
+                                        <button class="button is-danger is-small is-rounded" onclick="reportCom( <?php echo $row['idCom']?>)">
+                                            <span class="icon is-small">
+                                          <i class="fas fa-exclamation-triangle"></i>
+                                        </span>
+                                            <span>Reportar</span>
+                                        </button>
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -22,6 +22,16 @@
 
     <script src="../../js/bulma-extensions.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <script>
+        function reportPub(id) {
+           if (confirm("Realmente deseas reportar esta publicación? Se informará a los Administradores de ello.")){
+               window.open("../report.php?p=" + id, "_self");
+           } else{
+               return false;
+           }
+        }
+    </script>
 </head>
 <body>
     <?php menu("/","users");?>
@@ -99,34 +109,19 @@
                     <span class="tag is-medium">Hoy</span>
                 </header>
                 <?php
-                    $consulta = "SELECT DISTINCT 
-                                      coment.count,
-                                      p.id as idPub,
-                                      u.img,
-                                      u.nombre_usuario,
-                                      p.contenido,
-                                      p.imagen,
-                                      p.fecha
-                                    from
-                                      (
-                                        SELECT
-                                          count(id) as count
-                                        from
-                                          comentario
-                                      ) as coment,
-                                      usuario u,
-                                      publicacion p,
-                                      sigue s
-                                    where
-                                        p.id_usuario = u.id
-                                      AND (u.id = s.id_usuario_1
-                                      OR u.id = s.id_usuario_2)
-                                      AND s.id_usuario_1 = $id
-                                    ORDER BY
-                                      p.fecha DESC;";
+                    $consulta = "select distinct p.id as idPub, u.img, u.nombre_usuario,
+                                p.contenido, p.imagen, p.fecha 
+                    from usuario u, sigue s, publicacion p
+                    where  p.id_usuario = u.id AND (u.id = s.id_usuario_1 OR u.id = s.id_usuario_2)
+                      AND s.id_usuario_1 = $id
+                    ORDER BY   p.fecha DESC";
                     $data = mysqli_query($con,$consulta);
                     $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
                     while(!is_null($row)){
+                        $consulta_comentarios = "select count(*) count from comentario where id_publicacion = $row[idPub]";
+                        $datos = mysqli_query($con, $consulta_comentarios);
+                        $fila = mysqli_fetch_array($datos, MYSQLI_ASSOC);
+
                       echo "<div class='timeline-item'>" ;
                       echo "    <div class=\"timeline-marker is-icon\">
                                     <i class=\"fa fa-flag\"></i>
@@ -160,17 +155,17 @@
                                         </figure>";
                             }
                             echo "<p class='buttons'>";
-                            if ($row["count"] != 0){
-                                echo "<a class=\"button is-link is-small is-rounded\" href='./publicacion.php?p=$row[idPub]'>$row[count] comentarios</a>";
+                            if ($fila["count"] != 0){
+                                echo "<a class=\"button is-link is-small is-rounded\" href='./publicacion.php?p=$row[idPub]'>$fila[count] comentarios</a>";
                             }else{
                                 echo "<a class=\"button is-link is-small is-rounded\" href='./publicacion.php?p=$row[idPub]'>¡Comenta!</a>";
                             }
-                            echo " <a class=\"button is-danger is-small is-rounded\">
+                            echo " <button class=\"button is-danger is-small is-rounded\" onclick=\"reportPub(".$row['idPub'].")\">
                                         <span class=\"icon is-small\">
                                           <i class=\"fas fa-exclamation-triangle\"></i>
                                         </span>
                                         <span>Reportar</span>
-                                      </a></p>";
+                                      </button></p>";
                             echo "
                         </div>
                         </div>
@@ -214,5 +209,6 @@
         ?>
         </div>
     </div>
+
 </body>
 </html>
