@@ -50,14 +50,16 @@ while (!is_null($row)) {
 
     <link rel="stylesheet" href="../../css/bulma.min.css">
     <link rel="stylesheet" href="../../css/bulma-extensions.min.css">
+    <link rel="stylesheet" href="../../css/bulma-carousel.min.css">
     <link rel="stylesheet" href="../../css/main.css">
 
     <script src="../../js/bulma-extensions.min.js"></script>
+    <script src="../../js/bulma-carousel.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
     <?php menu("/","users");?>
-    <section class="hero is-dark is-bold">
+    <section class="hero is-link is-bold">
         <div class="hero-body">
             <div class="container">
                 <div class="columns">
@@ -113,6 +115,46 @@ while (!is_null($row)) {
                         </div>
                     <?php endif;?>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                Trabajos
+                </h1>
+                <?php
+                $consulta1 = "SELECT titulo,url from trabajo where id_usuario = $user[id]";
+                $data = mysqli_query($con,$consulta1);
+                $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
+                $numrows = mysqli_num_rows($data);
+                $contador = 1;
+                ?>
+                <?php if($numrows>0):?>
+                <!-- Start Carousel -->
+                <div id="carousel-trabajos" class="hero-carousel">
+                    <?php while(isset($row)):?>
+                        <div class="item-<?php echo $contador?>">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-5by3">
+                                        <img src="<?php echo $row['url']?>" alt="<?php echo $row['titulo']?>">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <?php echo $row['titulo']?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php $row = mysqli_fetch_array($data,MYSQLI_ASSOC);?>
+                        <?php $contador++;?>
+                    <?php endwhile;?>
+                </div>
+                <!--End Carousel-->
+                <?php else:?>
+                <kbd>Este usuario no tiene trabajos subidos.</kbd>
+                <?php endif;?>
             </div>
         </div>
     </section>
@@ -178,5 +220,13 @@ while (!is_null($row)) {
                 </div>
         </div>
     </div>
+        <script src="../../js/bulma-carousel.min.js"></script>
+        <script>
+            bulmaCarousel.attach('#carousel-trabajos', {
+                slidesToScroll: 1,
+                slidesToShow: 2,
+                infinite: true
+            });
+        </script>
 </body>
 </html>
