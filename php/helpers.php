@@ -77,7 +77,7 @@
         Perfil
       </a>
 
-      <a class=\"navbar-item\">
+      <a class=\"navbar-item\" href='./explorar.php'>
          Explorar
       </a>
       
@@ -108,7 +108,7 @@
         Perfil
       </a>
 
-      <a class=\"navbar-item\">
+      <a class=\"navbar-item\" href='./explorar.php'>
          Explorar
       </a>
       
