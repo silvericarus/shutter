@@ -22,6 +22,9 @@ if (!isset($_GET["u"])) {
                         AND t.id_preferencia = p.id
                         AND u.nombre_usuario = '$_GET[u]'";
 }
+
+
+
 $user = array();
 $data = mysqli_query($con, $consulta);
 $row = mysqli_fetch_array($data, MYSQLI_ASSOC);
@@ -37,7 +40,15 @@ while (!is_null($row)) {
     $row = mysqli_fetch_array($data, MYSQLI_ASSOC);
 }
 
-
+if (isset($_POST["unfollow"])){
+    $consulta = "DELETE FROM sigue where id_usuario_1=$userData[id] AND id_usuario_2=$user[id]";
+    mysqli_query($con,$consulta);
+}elseif (isset($_POST["follow"])){
+    $consulta = "INSERT INTO sigue VALUES($userData[id],$user[id])";
+    mysqli_query($con,$consulta);
+}elseif (isset($_POST["editProfile"])){
+    //Redireccionar a editProfile.php
+}
 ?>
 <!doctype html>
 <html lang="es" xmlns="http://www.w3.org/1999/html">
@@ -100,18 +111,24 @@ while (!is_null($row)) {
 
                             if ($count > 0){
                                 echo "<div class=\"column\">
-                                        <a class=\"button is-danger is-rounded\">Dejar de seguir</a>
+                                        <form action=\"#\" method=\"post\">
+                                <button class=\"button is-danger is-rounded\" name=\"unfollow\">Dejar de seguir</button>
+                            </form>
                                     </div>";
                             }else{
                                 echo "<div class=\"column\">
-                                        <a class=\"button is-success is-rounded\">Seguir</a>
+                                        <form action=\"#\" method=\"post\">
+                                            <button class=\"button is-success is-rounded\" name=\"follow\">Seguir</button>
+                                        </form>
                                     </div>";
                             }
                         ?>
 
                     <?php else: ?>
                         <div class="column">
-                            <a class="button is-success is-rounded">Editar perfil</a>
+                            <form action="#" method="post">
+                                <button class="button is-success is-rounded" name="editProfile">Editar perfil</button>
+                            </form>
                         </div>
                     <?php endif;?>
                 </div>
