@@ -17,6 +17,7 @@ $data = mysqli_query($con,$consulta);
 $row = mysqli_fetch_array($data,MYSQLI_ASSOC);
 $eventState = $row["estado"];
 $eventParticipants = $row["limite_participantes"];
+$eventTitle = $row["titulo"];
 ?>
 <?php
 if (isset($_POST["id"])){
@@ -25,6 +26,33 @@ if (isset($_POST["id"])){
     header("Refresh:0");
 }
 ?>
+
+<?php
+if ($eventState=="fin"){
+    //Se elige el más votado como ganador automáticamente
+    $consulta_win = "SELECT id_trabajo,
+COUNT(id_trabajo) AS value_occurrence
+FROM     vota v
+LEFT JOIN trabajo t on t.id = v.id_trabajo
+LEFT JOIN evento e ON e.id = t.id_evento
+
+WHERE t.id_evento = $eventId
+GROUP BY id_trabajo
+ORDER BY value_occurrence DESC
+LIMIT 1;";
+
+    $data = mysqli_query($con,$consulta_win);
+    $row = mysqli_fetch_array($data);
+
+
+    while(!is_null($row)){
+        $consulta_win_2 = "UPDATE trabajo SET id_evento_ganador = $eventId WHERE id = $row[id_trabajo];";
+        mysqli_query($con,$consulta_win_2);
+    }
+}
+
+
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -32,7 +60,7 @@ if (isset($_POST["id"])){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $row["titulo"]?> | Shutter</title>
+    <title><?php echo $eventTitle?> | Shutter</title>
     <link rel="stylesheet" href="../../css/bulma.min.css">
     <link rel="stylesheet" href="../../css/bulma-extensions.min.css">
     <link rel="stylesheet" href="../../css/main.css">
