@@ -8,6 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <link rel="icon" href="img/favicon.png" type="image/png" sizes="32x32">
     <title>Bienvenido | Shutter</title>
     <link rel="stylesheet" href="css/bulma.min.css">
     <link rel="stylesheet" href="css/main.css">

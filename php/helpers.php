@@ -192,4 +192,68 @@
         }
         return $votes;
     }
+
+    function renderFooter($ruta,$rol){
+        if ($rol == "users"){
+            if ($ruta == "/"){
+                echo "<footer class=\"footer is-shutter-primary\">
+  <div class=\"content has-text-centered\">
+      <div class='columns'>
+          <div class='column'>
+            <img src='img/nombre.png'>
+            <p>
+              <strong>Shutter</strong> es una red social creada por <a href='https://www.github.com/silvericarus'>Alberto González Rosa</a> en 2019. 
+              Para cualquier consulta, por favor envía un correo electrónico a <a href='mailto:ayuda@shutter.com'>ayuda@shutter.com</a>.
+            </p>
+          </div>
+          <div class='column'>
+            <h4>Nuestra Misión</h4>
+            <p>
+                <i>
+                    Proveer a fotógrafos profesionales y aficionados de un punto de encuentro donde ejercer su afición
+                    de una forma beneficiosa, permitiendo la construcción de una comunidad abierta a las preferencias
+                    de cada persona, donde todos puedan encontrar un lugar y el reto de los eventos les mantenga siempre
+                    con una gran motivación por su pasión.
+                </i>
+            </p>
+            <img src='img/made-with-bulma.png'>
+          </div>
+      </div>
+  </div>
+</footer>";
+            }else{
+                echo "<footer class=\"footer is-shutter-primary\">
+  <div class=\"content has-text-centered\">
+      <div class='columns'>
+          <div class='column'>
+            <img src='../../img/nombre.png'>
+            <p>
+              <strong>Shutter</strong> es una red social creada por <a href='https://www.github.com/silvericarus'>Alberto González Rosa</a> en 2019. 
+              Para cualquier consulta, por favor envía un correo electrónico a <a href='mailto:ayuda@shutter.com'>ayuda@shutter.com</a>.
+            </p>
+          </div>
+          <div class='column'>
+            <h4>Nuestra Misión</h4>
+            <p>
+                <i>
+                    Proveer a fotógrafos profesionales y aficionados de un punto de encuentro donde ejercer su afición
+                    de una forma beneficiosa, permitiendo la construcción de una comunidad abierta a las preferencias
+                    de cada persona, donde todos puedan encontrar un lugar y el reto de los eventos les mantenga siempre
+                    con una gran motivación por su pasión.
+                </i>
+            </p>
+            <img src='../../img/made-with-bulma.png'>
+          </div>
+      </div>
+  </div>
+</footer>";
+            }
+        }else{
+            if ($ruta == "/"){
+
+            }else{
+
+            }
+        }
+    }
 ?>
