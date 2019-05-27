@@ -88,7 +88,7 @@
   </div>
 </nav>";
             }else{
-                echo "<nav class=\"navbar\" role=\"navigation\" aria-label=\"main navigation\">
+                echo "<nav class=\"navbar is-shutter-primary\" role=\"navigation\" aria-label=\"main navigation\">
   <div class=\"navbar-brand\">
     <a class=\"navbar-item\" href=\"./dashboard.php\">
       <img src=\"../../img/nombre.png\" width=\"112\" height=\"26\">
@@ -123,7 +123,32 @@
             if ($ruta == "/"){
 
             }else{
+                echo "<nav class=\"navbar is-shutter-primary\" role=\"navigation\" aria-label=\"main navigation\">
+  <div class=\"navbar-brand\">
+    <a class=\"navbar-item\" href=\"./dashboard.php\">
+      <img src=\"../../img/nombre.png\" width=\"112\" height=\"26\">
+    </a>
 
+    <a role=\"button\" class=\"navbar-burger burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"navbarBasicExample\">
+      <span aria-hidden=\"true\"></span>
+      <span aria-hidden=\"true\"></span>
+      <span aria-hidden=\"true\"></span>
+    </a>
+  </div>
+
+  <div id=\"navbarBasicExample\" class=\"navbar-menu\">
+    <div class=\"navbar-start\">
+
+      <a class=\"navbar-item\" href='./editarPerfil.php'>
+        Perfil
+      </a>
+      
+      <a class=\"navbar-item\" href='../cerrarSesion.php'>
+         Cerrar Sesión
+      </a>
+    </div>
+  </div>
+</nav>";
             }
         }
 
@@ -225,12 +250,12 @@
                 echo "<footer class=\"footer is-shutter-primary\">
   <div class=\"content has-text-centered\">
       <div class='columns'>
-          <div class='column'>
+          <div class='column' style='background-image: url(\"../../img/bg_aboutus.jpg\");'>
             <img src='../../img/nombre.png'>
-            <p>
+            <p class='is-opaque'>
               <strong>Shutter</strong> es una red social creada por <a href='https://www.github.com/silvericarus'>Alberto González Rosa</a> en 2019. 
               Para cualquier consulta, por favor envía un correo electrónico a <a href='mailto:ayuda@shutter.com'>ayuda@shutter.com</a>.
-            </p>
+            </pclassis-opaque>
           </div>
           <div class='column'>
             <h4>Nuestra Misión</h4>
@@ -252,7 +277,31 @@
             if ($ruta == "/"){
 
             }else{
-
+                echo "<footer class=\"footer is-shutter-primary\">
+  <div class=\"content has-text-centered\">
+      <div class='columns'>
+          <div class='column'  style='background-image: url(\"../../img/bg_aboutus.jpg\");'>
+            <img src='../../img/nombre.png'>
+            <p class='is-opaque'>
+              <strong>Shutter</strong> es una red social creada por <a href='https://www.github.com/silvericarus'>Alberto González Rosa</a> en 2019. 
+              Para cualquier consulta, por favor envía un correo electrónico a <a href='mailto:ayuda@shutter.com'>ayuda@shutter.com</a>.
+            </p>
+          </div>
+          <div class='column'>
+            <h4>Nuestra Misión</h4>
+            <p>
+                <i>
+                    Proveer a fotógrafos profesionales y aficionados de un punto de encuentro donde ejercer su afición
+                    de una forma beneficiosa, permitiendo la construcción de una comunidad abierta a las preferencias
+                    de cada persona, donde todos puedan encontrar un lugar y el reto de los eventos les mantenga siempre
+                    con una gran motivación por su pasión.
+                </i>
+            </p>
+            <img src='../../img/made-with-bulma.png'>
+          </div>
+      </div>
+  </div>
+</footer>";
             }
         }
     }

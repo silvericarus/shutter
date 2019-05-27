@@ -77,7 +77,7 @@ if (isset($_POST["unfollow"])){
                 <div class="columns">
                     <div class="column">
                         <figure class="image is-128x128 is-rounded">
-                            <img src="<?php echo $user["img"] != null ?  "../../img/$user[nombre_usuario]/$user[img].png" :  "../../img/userdefault.png";?>">
+                            <img src="<?php echo $user["img"] != null ?  "../../img/$user[nombre_usuario]/$user[img]" :  "../../img/userdefault.png";?>">
                         </figure>
                     </div>
                     <div class="column">
@@ -127,7 +127,7 @@ if (isset($_POST["unfollow"])){
 
                     <?php else: ?>
                         <div class="column">
-                            <form action="#" method="post">
+                            <form action="./editarPerfil.php" method="post">
                                 <button class="button is-success is-rounded" name="editProfile">Editar perfil</button>
                             </form>
                         </div>
@@ -184,7 +184,7 @@ if (isset($_POST["unfollow"])){
                     <span class="tag is-medium">Hoy</span>
                 </header>
                 <?php
-                    $consulta = "SELECT DISTINCT p.contenido, p.imagen, p.fecha from usuario u, publicacion p 
+                    $consulta = "SELECT DISTINCT p.contenido, p.imagen, p.fecha,u.nombre_usuario,u.img from usuario u, publicacion p 
                                 where p.id_usuario = u.id 
                                 AND p.id_usuario = $user[id] 
                                 ORDER BY p.fecha DESC";
@@ -203,8 +203,8 @@ if (isset($_POST["unfollow"])){
                         <div class=\"media\">
                             <div class=\"media-left\">
                                 <figure class=\"image is-48x48\">";
-                        if ($user["img"] != null){
-                            echo "<img src='../../img/$user[nombre_usuario]/$user[img].png'>";
+                        if ($row["img"] != null){
+                            echo "<img src='../../img/$row[nombre_usuario]/$row[img]'>";
                         }else{
                             echo "<img src='../../img/userdefault.png'>";
 
