@@ -65,7 +65,7 @@
                 <div class="columns">
                     <div class="column is-opaque">
                         <figure class="image is-64x64">
-                            <img src="<?php echo $userData["img"] != null ?  "../../img/$userData[nombre_usuario]/$userData[img].png" :  "../../img/userdefault.png";?>">
+                            <img src="<?php echo $userData["img"] != null ?  "../../img/$userData[nombre_usuario]/$userData[img]" :  "../../img/userdefault.png";?>">
                         </figure>
                         <h1 class="title">
                             Bienvenido, <?php echo $userData["nombre_usuario"]; ?>!
@@ -134,8 +134,8 @@
                         <div class=\"media\">
                             <div class=\"media-left\">
                                 <figure class=\"image is-48x48\">";
-                    if ($userData["img"] != null){
-                        echo "<img src='../../img/$userData[nombre_usuario]/$userData[img].png'>";
+                    if ($row["img"] != null){
+                        echo "<img src='../../img/$row[nombre_usuario]/$row[img]'>";
                     }else{
                         echo "<img src='../../img/userdefault.png'>";
 
