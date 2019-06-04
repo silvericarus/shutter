@@ -290,4 +290,5 @@ where e.id = t.id_evento AND e.id = $eventId ;";
         </div>
     </div>
 <?php endif;?>
+<?php renderFooter("php","users");?>
 </body>
