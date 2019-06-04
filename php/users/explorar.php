@@ -119,7 +119,7 @@ $con = conectarServer();
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <button class="button is-shutter-secondary is-fullwidth" type="submit">Buscar</button>
+                                        <button class="button is-shutter-secondary is-fullwidth is-rounded" type="submit">Buscar</button>
                                     </div>
                                 </div>
                             </form>
@@ -178,6 +178,9 @@ where e.titulo LIKE '%$_POST[titulo]%' OR e.estado = '$_POST[estado]' OR p.tag =
                         </div>
                         <div class="is-divider-vertical"></div>
                         <div class="column">
+                            <?php if($userData["nivel"]>0):?>
+                                <button onclick="crearEvento()" class="button is-rounded is-shutter-primary is-medium">Crear evento</button>
+                            <?php endif;?>
                             <h3>Filtrar</h3>
                             <form action="#" method="post" name="buscarEventos">
                                 <div class="field">
@@ -229,19 +232,22 @@ where e.titulo LIKE '%$_POST[titulo]%' OR e.estado = '$_POST[estado]' OR p.tag =
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <button class="button is-shutter-secondary is-fullwidth" type="submit">Buscar</button>
+                                        <button class="button is-shutter-secondary is-fullwidth is-rounded" type="submit">Buscar</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         </div>
                     </div>
-                    <?php
-
-                    ?>
                 </li>
             </ul>
         </div>
     </div>
+    <?php renderFooter("php","users");?>
+    <script>
+        function crearEvento() {
+            window.location = "./crearEvento.php";
+        }
+    </script>
 </body>
 </html>
