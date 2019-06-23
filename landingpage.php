@@ -15,7 +15,7 @@
 
     <script src="js/navbar.js"></script>
 
-
+    
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
