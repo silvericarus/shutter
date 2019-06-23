@@ -69,6 +69,7 @@ LIMIT 1;";
     <script src="../../js/bulma-extensions.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="../../js/file.js"></script>
+    <script src="../../js/navbar.js"></script>
     <script>
         function reportEv(id) {
             if (confirm("Realmente deseas reportar este evento? Se informará a los Administradores de ello.")){

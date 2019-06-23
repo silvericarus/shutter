@@ -23,6 +23,7 @@ $con = conectarServer();
 
     <script src="../../js/bulma-extensions.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="../../js/navbar.js"></script>
 </head>
 <body>
     <?php menu("php","users");?>
