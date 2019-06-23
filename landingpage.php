@@ -12,7 +12,7 @@
     <title>Bienvenido | Shutter</title>
     <link rel="stylesheet" href="css/bulma.min.css">
     <link rel="stylesheet" href="css/main.css">
-
+    
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
