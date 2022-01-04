@@ -60,7 +60,7 @@ $con = conectarServer();
                         <tr>
                             <td><?php echo $row["fecha"]?></td>
                             <td><?php echo $row["nombre_usuario"]?></td>
-                            <td><?php echo $row["id_evento"]!=null? "Evento" : $row["id_publicacion"]!=null? "Publicacion": "Comentario";?></td>
+                            <td><?php echo ($row["id_evento"]!=null? "Evento" : $row["id_publicacion"]!=null)? "Publicacion": "Comentario";?></td>
                             <td><form method="post" action="./reporte.php"><input type="hidden" value="<?php echo $row["id"]?>" name="id"><button class="button is-shutter-secondary is-rounded" type="submit" value="Ver">
         <span class="icon is-small">
           <i class="fas fa-eye"></i>
